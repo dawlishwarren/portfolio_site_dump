@@ -1,0 +1,44 @@
+:root {
+	--width: 85vw;
+	--height: calc(var(--width) / 1.618);
+}
+
+.container {
+	height: var(--height);
+	width: var(--width);
+	text-align: center;
+	background-color: white;
+	margin: auto;
+	display: grid;
+	grid-template-columns: 9.02% 29.18% 43.76% 9.02% 9.02%;
+	border: black solid 5px;
+}
+h2,
+p,
+img {
+	margin-top: 3rem;
+}
+.column-1 {
+	grid-column: 1;
+	border-right: 2px black solid;
+}
+.column-2 {
+	grid-column: 2;
+	border-right: 2px black solid;
+}
+.column-3 {
+	grid-column: 3 / span 1;
+	border-right: 2px black solid;
+}
+.column-3 > img {
+	object-fit: cover;
+	width: 100%;
+	max-height: 100%;
+}
+.column-4 {
+	grid-column: 4;
+	border-right: 2px black solid;
+}
+.column-5 {
+	grid-column: 5;
+}
