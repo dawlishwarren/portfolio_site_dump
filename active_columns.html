@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Columns</title>
+
+    <style>
+        * {
+	        overflow: hidden;
+	        font-family: 'Nanum Myeongjo', serif;
+        }
+        :root {
+	        --width: calc(var(var(--height) * 1.618));
+	        --height: 97vh;
+        }
+        .container {
+            height: var(--height);
+            width: var(--width);
+            text-align: center;
+            background-color: white;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(5, 9.02vw);
+            border: black solid 5px;
+        }
+        .column {
+            border-right: black solid 2px;
+            
+        }
+
+        .active {
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column column-1">1</div>
+        <div class="column column-2">2</div>
+        <div class="column column-3">3</div>
+        <div class="column column-4">4</div>
+        <div class="column column-5">5</div>
+    </div>
+</body>
+
+<script>
+    document.querySelector('.container').addEventListener('click', (e) => {
+        e.preventDefault();
+
+        let el = e.target;
+        const setActive = el => {
+            [...el.parentElement.children].forEach(sibling => sibling.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        let columns = [...document.body.querySelectorAll('.container > .column')]
+        columns.forEach(el => el.addEventListener('click', e => setActive(el)))
+
+        
+        
+        console.log(`Click: ${e.target.className}`)
+    })
+</script>
+
+</html>
