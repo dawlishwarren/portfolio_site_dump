@@ -1,0 +1,112 @@
+/* Root and general styles */
+
+:root {
+    --width: calc((var(--height) * 1.618));
+    --height: 97vh;
+}
+body {
+    background-color: #999;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+
+}
+
+.grid {
+    flex-direction: row;
+    height: var(--height);
+    width: var(--width);
+    border: black solid 5px;
+    display: flex;
+    max-height: 100%;
+}
+
+.column {
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 0;
+    z-index: 0;
+    position: relative;
+    background-color: #fff;
+    outline: 1px solid #ddd;
+    opacity: 0.95;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.grid, .column, .column > * {
+    transition: all 0.9s cubic-bezier(0.5, 0, 0.3, 1);
+}
+
+/* Active & Not Active styling */
+.active {
+    box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2),
+    0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);
+    z-index: 1;
+    width: calc(var(--width) / 1.618);
+}
+
+.column.active > .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    height: 100%;
+    animation: opacity 3s;
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.column.active > h2.title {
+    /* writing-mode: horizontal-tb; */
+    text-orientation: initial;
+    animation: rotation 0.9s cubic-bezier(0.5, 0, 0.3, 1);
+    font-size: 2rem;
+    padding-bottom: 10vh;
+}
+
+.column.active > .cards > .card-item {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    line-height: 1;
+}
+.column.active > .cards > .card-item > * {
+    margin: auto;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Not active */
+.column:not(.active) {
+    flex-grow: 0.5;
+}
+.column:not(.active) > h2.title {
+    writing-mode: vertical-lr;
+    transform: rotate(-180deg);
+    transition: all 0s;
+    text-orientation: sideways;
+    font-size: 2rem;
+    letter-spacing: 5px;
+}
+.column:not(.active) > .cards {
+    display: none;
+}
